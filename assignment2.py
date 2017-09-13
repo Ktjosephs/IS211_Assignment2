@@ -6,19 +6,17 @@ import urllib2
 import datetime
 import logging
 import argparse
-import sys
 import csv
 
 def main():
-    """Fetches a csv file and stores the data in a dictionary."""
 
     def downloadData(url):
-        """Fetches csv file from url."""
+        "Bring in URL data"""
         url_data = urllib2.urlopen(url)
         return url_data
 
     def processData(data):
-        """Process data from csv file."""
+        """process data"""
         csv_file = csv.reader(data)
         persondict = {}
         csv_file.next()
@@ -37,7 +35,7 @@ def main():
         return persondict
 
     def displayPerson(id, persondata):
-        """Display person's info."""
+        """Display info."""
         try:
             response = "Person #{idnum} is {name} with a birthday of {date}"
             print response.format(idnum=id, name=persondata[id][0],
@@ -59,7 +57,7 @@ def main():
             try:
                 user = int(raw_input(msg))
             except ValueError:
-                print "Input is invalid. Try again."
+                print "Input is invalid. Please try again."
                 continue
             if user > 0:
                 displayPerson(user, persondata)
